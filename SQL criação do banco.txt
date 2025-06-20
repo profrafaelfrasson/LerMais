@@ -1,0 +1,61 @@
+drop database lermais;
+
+create database lermais;
+
+use lermais;
+
+
+-- 1. Categoria
+CREATE TABLE Categoria (
+    id_categoria INT PRIMARY KEY AUTO_INCREMENT,
+    nome_categoria VARCHAR(100) NOT NULL
+);
+
+-- 2. Livro
+CREATE TABLE Livro (
+    id_livro INT PRIMARY KEY AUTO_INCREMENT,
+    nome_livro VARCHAR(100) NOT NULL,
+    autor_livro VARCHAR(100) NOT NULL,
+    estoque_livro INT NOT NULL,
+    fk_id_categoria INT NOT NULL,
+	fk_id_subcategoria INT NULL,
+    capa_livro VARCHAR(230) NOT NULL,
+    FOREIGN KEY (fk_id_categoria) REFERENCES Categoria(id_categoria),
+	FOREIGN KEY (fk_id_subcategoria) REFERENCES Categoria(id_categoria)
+);
+ALTER TABLE `livro` ADD `descricao` LONGTEXT NOT NULL ;
+-- 3. Usuario
+CREATE TABLE Usuario (
+    id_usuario INT PRIMARY KEY AUTO_INCREMENT,
+    nome_usuario VARCHAR(50) NOT NULL,
+    email_usuario VARCHAR(100)NOT NULL,
+    contato_usuario VARCHAR(15) NOT NULL,
+    senha_usuario VARCHAR(20)NOT NULL
+);
+
+insert into usuario(nome_usuario,email_usuario,contato_usuario,senha_usuario) values ("ADMIN SISTEMA", admin@sistema, "(11)11111-1111", "admin");
+
+-- 4. Aluguel
+CREATE TABLE Aluguel (
+    id_aluguel INT PRIMARY KEY AUTO_INCREMENT,
+    fk_id_usuario INT NOT NULL,
+    fk_id_livro INT,
+    qtd_aluguel INT NOT NULL DEFAULT 1,
+    data_coleta DATE NOT NULL,
+    dias_aluguel INT NOT NULL,
+    flg_ativo VARCHAR(2),
+    FOREIGN KEY (fk_id_livro) REFERENCES Livro(id_livro),
+    FOREIGN KEY (fk_id_usuario) REFERENCES Usuario(id_usuario)
+);
+
+-- 5. Doaçao
+CREATE TABLE Doacao (
+    id_doacao INT PRIMARY KEY AUTO_INCREMENT,
+    fk_id_usuario INT NOT NULL,
+    nome_livro VARCHAR(100) NOT NULL,
+    autor_livro VARCHAR(100) NOT NULL,
+    qtd_doacao INT NOT NULL,
+    descricao LONGTEXT,
+    flg_status VARCHAR(2),
+    FOREIGN KEY (fk_id_usuario) REFERENCES Usuario(id_usuario)
+);

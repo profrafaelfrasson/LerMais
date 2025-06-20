@@ -1,0 +1,55 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body, html {
+  height: 100%;
+  font-family: Arial, sans-serif;
+  background-color: #f0f4f8;
+  background-image: url(../public/image/imagem.navy\,opaca.png);
+}
+
+.container {
+  display: flex;
+  height: 100vh;
+}
+
+.admin-panel {
+  margin: auto;
+  background-color: #ffffff;
+  padding: 60px;
+  border-radius: 16px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  text-align: center;
+  max-width: 400px;
+  width: 90%;
+}
+
+.admin-panel h1 {
+  font-size: 36px;
+  color: #0047ab;
+  margin-bottom: 40px;
+}
+
+.botoes {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.botao {
+  padding: 14px;
+  background-color: #0047ab;
+  color: white;
+  text-decoration: none;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: bold;
+  transition: background-color 0.3s;
+}
+
+.botao:hover {
+  background-color: #003b94;
+}
